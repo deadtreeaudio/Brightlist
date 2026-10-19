@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#222729" />
+  <meta name="description" content="An offline-first home for tasks, reminders, packing and returns." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Brightlist · Lists without the fuss</title>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">✓</div><div><strong>brightlist<span>.</span></strong><small>Make room for everything.</small></div></div>
+      <div class="nav-caption">YOUR SPACE</div>
+      <nav id="navigation" class="navigation" aria-label="Main lists"></nav>
+      <div class="sidebar-footer"><button id="createListSide" class="sidebar-new" type="button">＋ New custom list</button><p>Made for real life, not subscriptions.</p></div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><div class="mobile-brand"><div class="brand-mark">✓</div><strong>brightlist<span>.</span></strong></div><div class="top-actions"><span id="saveStatus">Saved on this device</span><button id="settingsButton" class="icon-button" aria-label="Settings and backup" title="Settings and backup">⚙</button></div></header>
+      <div class="content-wrap"><div id="view" aria-live="polite"></div></div>
+    </main>
+    <nav class="mobile-nav" id="mobileNavigation" aria-label="Mobile navigation"></nav>
+  </div>
+  <div id="modalHost"></div>
+  <input type="file" id="importFile" accept="application/json,.json" hidden />
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer></script>
+  <script src="cloud-config.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="shared.js" defer></script>
+</body>
+</html>
