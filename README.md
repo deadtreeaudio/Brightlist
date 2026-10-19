@@ -40,18 +40,20 @@ From inside the folder, run `python3 -m http.server 8000`, then open `http://loc
 
 Everything is written in vanilla HTML, CSS and JS. No dependencies, builds, accounts, analytics, in-app purchases or external libraries.
 
-## Enable collaboration and personalized names
+## Enable accounts, collaboration, and private-list backups
 
-The packaged app includes the shared-list UI, but **collaboration is inactive until you configure a Supabase backend**. Personal lists work without any account.
+The packaged app includes password-based Supabase Authentication plus shared-list UI. Personal lists remain local by default; a signed-in user can make a verified, explicit backup after the reviewed database migration is run.
 
-1. Create a free project at https://supabase.com and open **SQL Editor**. Run `supabase-setup.sql`.
-2. In Authentication settings, enable email OTP/magic links and add your GitHub Pages URL to the allowed redirect URLs. Set the Site URL to your hosted app URL.
-3. Find **Project URL** and **publishable/anon key** in Supabase project API settings. Set both in `cloud-config.js`. **Never place the service-role/secret key in this file or GitHub.**
+1. Confirm the existing production schema. `supabase-setup.sql` is the original shared-list schema; do not rerun it blindly.
+2. Review then run `supabase-auth-migration.sql` in **SQL Editor**. It is additive: it adds a new-user profile trigger and RLS-protected `private_list_backups`, without replacing existing shared tables.
+3. In **Authentication → Providers → Email**, enable email/password and require email confirmation.
+4. In **Authentication → URL Configuration**, set Site URL and add this exact Redirect URL: `https://deadtreeaudio.github.io/Brightlist/`.
+5. In **API Keys**, confirm the configured browser key is an active publishable/anon key. **Never place a service-role/secret key in this file or GitHub.**
 4. Enable the `shared_items` table in the `supabase_realtime` publication via Supabase Dashboard.
-5. Push your updated files to GitHub Pages; refresh or reopen the installed app.
-6. Open **Shared Lists**, sign in with your email, and enter your display name (such as Clint). Create a shared list titled `Packing List` and invite Steve with the Share button. After Steve signs in, sets his name, and accepts the link, the list appears as **Clint and Steve’s Packing List**. Each account can also have its own locally saved private lists.
+6. Push your updated files to GitHub Pages; refresh or reopen the installed app.
+7. Open **Shared Lists** to create an account, verify email, sign in, reset a password, or use a shared invite. Sessions persist in the browser. “Back up local lists” uploads only after confirmation, verifies the saved row, and never deletes local data.
 
-**Privacy and limits:** Personal lists live in browser local storage; they are not transferred across devices or synced to your account. Shared lists and names live in Supabase; database RLS restricts list access to members. Invitation URLs are bearer tokens: anybody who receives a valid unexpired invite can join. Links expire after 14 days; avoid forwarding them publicly. Members can edit and delete shared items. The free Supabase tier is subject to its own usage limits and may change. Shared lists require an internet connection for writes. You can customize shared-list titles; the app automatically prepends participant names.
+**Privacy and limits:** Personal lists live in browser local storage unless their owner explicitly backs them up. Shared lists, profiles, and opted-in backups live in Supabase; RLS restricts each to authorized users or members. Invitation URLs are bearer tokens: anybody who receives a valid unexpired invite can join. Links expire after 14 days; avoid forwarding them publicly. Members can edit and delete shared items. Shared lists require an internet connection for writes.
 
 ### GitHub repository description (under 350 characters)
 
