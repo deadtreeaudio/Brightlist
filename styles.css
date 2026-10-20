@@ -22,3 +22,21 @@ html,body{width:100%;max-width:100%;overflow-x:hidden;-webkit-text-size-adjust:1
 .item.drag-over{box-shadow:0 3px 0 var(--accent)}
 .auth-panel input[type=email],.auth-panel input[type=password]{font-size:16px}
 @media(max-width:780px){.content-wrap{width:100%;padding-left:clamp(12px,4vw,19px);padding-right:clamp(12px,4vw,19px)}.page-heading h1{font-size:clamp(26px,8vw,35px);letter-spacing:-1.6px;line-height:1.12}.heading-row{align-items:flex-start}.heading-row .toolbar{max-width:100%;flex-wrap:wrap}.card{width:100%;min-width:0}.mobile-nav{width:100%;max-width:100vw}.mobile-nav button{min-width:0;padding-left:2px;padding-right:2px}.item-actions{width:100%;justify-content:flex-end}.quick-entry{min-width:0}.quick-entry input{width:100%;min-width:0}}
+
+/* Full dark appearance. Keep the user's per-tab fluorescent accent unchanged. */
+:root[data-theme="dark"]{color-scheme:dark;--charcoal:#edf2ee;--deep:#f6f8f5;--slate:#d1dad5;--cream:#111719;--paper:#1d2527;--line:#354044;--muted:#a2b0ae;--shadow:0 15px 42px rgba(0,0,0,.25)}
+:root[data-theme="dark"] body{background:var(--cream);color:var(--charcoal)}
+:root[data-theme="dark"] .sidebar,:root[data-theme="dark"] .mobile-nav{background:#0b1012;color:#f5f6f3}
+:root[data-theme="dark"] .mobile-nav button.active,:root[data-theme="dark"] .nav-entry.active{background:#293436}
+:root[data-theme="dark"] .topbar{background:#141b1d}
+:root[data-theme="dark"] .card,:root[data-theme="dark"] .stat:not(.accent-stat),:root[data-theme="dark"] .category-card,:root[data-theme="dark"] .modal,:root[data-theme="dark"] .secondary,:root[data-theme="dark"] .icon-button,:root[data-theme="dark"] .brite-icon{background:var(--paper);color:var(--charcoal);border-color:var(--line)}
+:root[data-theme="dark"] input,:root[data-theme="dark"] textarea,:root[data-theme="dark"] select,:root[data-theme="dark"] .quick-entry input,:root[data-theme="dark"] .quick-entry textarea{background:#141b1d;color:#f2f5f2;border-color:var(--line)}
+:root[data-theme="dark"] input::placeholder,:root[data-theme="dark"] textarea::placeholder{color:#9aa7a5}
+:root[data-theme="dark"] .modal-backdrop{background:rgba(0,0,0,.78)}
+:root[data-theme="dark"] .item{border-color:var(--line)}
+:root[data-theme="dark"] .item-actions button:hover{background:#2c383a;color:#fff}
+:root[data-theme="dark"] .check{background:#172023;border-color:#788783;color:#fff}
+:root[data-theme="dark"] .check.checked,:root[data-theme="dark"] .accent-stat,:root[data-theme="dark"] .primary,:root[data-theme="dark"] .brand-mark{background:var(--accent)!important;color:#172022!important}
+:root[data-theme="dark"] .page-heading p,:root[data-theme="dark"] .item-meta,:root[data-theme="dark"] .empty,:root[data-theme="dark"] .stat span,:root[data-theme="dark"] .small-note{color:var(--muted)}
+:root[data-theme="dark"] .done .item-name{color:#91a09b}
+:root[data-theme="dark"] .invite-banner{background:#263337}
